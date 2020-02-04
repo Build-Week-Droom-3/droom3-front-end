@@ -3,7 +3,8 @@ import { Form, Field, withFormik } from "formik"
 import { Link } from "react-router-dom"
 function CompanyRegister(){
     return(
-        <div>
+        <div> 
+           <Link to="/">Home</Link>
             <Form>
                 <Field type="text" name="company" placeholder="Company..."/>
                 <Field type="text" name="password" placeholder="Password..."/>
@@ -14,7 +15,7 @@ function CompanyRegister(){
                 </label>
                 <button type="submit">Register</button>
             </Form>
-            <Link to="/">Home</Link>
+            <div>Already registered? <Link to="/login">Sign in.</Link></div>
         </div>
     )
 }

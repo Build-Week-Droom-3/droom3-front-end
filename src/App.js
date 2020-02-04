@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Link, Route } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 
 
 //===============Imports Components=================//
@@ -61,6 +61,7 @@ function App() {
         <Route path="/company_matched">
           <CompanyMatch />
         </Route>
+
       </Switch>
     </div>
   );
