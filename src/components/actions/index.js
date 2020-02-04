@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../utils/api';
 
 export const API_POSTS_START = 'API_POSTS_START';
 export const API_POSTS_SUCCESS = 'API_POSTS_SUCCESS';
@@ -11,5 +11,14 @@ export const API_FAILURE = 'API_FAILURE';
 export const fetchAPI = () => (dispatch) => {
 	dispatch({ type: API_START });
 
-	axios.get().then((res) => {}).catch(() => {});
+	api()
+		.get('/user')
+		.then((res) => {
+			console.log(res);
+			// dispatch({ type: API_SUCCESS, payload: res.data });
+		})
+		.catch(() => {
+			console.log();
+			// dispatch({ type: API_FAILURE });
+		});
 };

@@ -6,7 +6,7 @@ export function getToken() {
 
 export default function() {
 	return axios.create({
-		baseURL: 'http://localhost:5000',
+		baseURL: 'https://droom-be.herokuapp.com',
 		headers: {
 			Authorization: getToken
 		}
