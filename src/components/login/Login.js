@@ -21,7 +21,7 @@ const Login = (props) => {
 		api().post('/users/login', data).then((res) => {
 			localStorage.setItem('token', res.data.token);
 			console.log('sub', res);
-			props.history.push('/userProfile');
+			props.history.push('/user_profile');
 		});
 	};
 
