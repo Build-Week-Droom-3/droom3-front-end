@@ -8,7 +8,7 @@ export default function() {
 	return axios.create({
 		baseURL: 'https://droom-be.herokuapp.com',
 		headers: {
-			Authorization: getToken
+			Authorization: getToken()
 		}
 	});
 }

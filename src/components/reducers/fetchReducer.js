@@ -1,4 +1,4 @@
-import { API_START, API_SUCCESS, API_FAILURE, API_POSTS_FAILURE } from '../actions/index';
+import { API_START, API_SUCCESS, API_FAILURE } from '../actions/index';
 
 const initialState = {
 	fetch: [],
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
 				isLoading: false,
 				fetch: action.payload
 			};
-		case API_POSTS_FAILURE:
+		case API_FAILURE:
 			return {
 				...state,
 				isLoading: false
