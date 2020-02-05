@@ -31,23 +31,11 @@ const FormikCompanyProfile = withFormik({
             others: ""
         }
     },
-<<<<<<< HEAD
-=======
 
-    handleSubmit(values){
-        console.log(values)
-    }
-})(CompanyProfile)
->>>>>>> 598b8e78cd269fb27bac7bb6ad78a3f9473e40e7
 
     handleSubmit(values){
         console.log(values)
     }
 })(CompanyProfile)
 
-<<<<<<< HEAD
 export default FormikCompanyProfile
-=======
-
-export default FormikCompanyProfile
->>>>>>> 598b8e78cd269fb27bac7bb6ad78a3f9473e40e7
