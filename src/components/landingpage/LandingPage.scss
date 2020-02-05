@@ -1,0 +1,30 @@
+@mixin noDecoration() {
+    text-decoration: none;
+    
+}
+.landing-page-container {
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+    .login-register-container{
+        .login-register{
+            margin: 1rem;
+            @include noDecoration();
+            color: black;
+        }
+    }
+    .user-company-register-container{
+        margin-top: 45vh;
+        text-align: center;
+        .phrase-landing{
+            font-size: 2rem;
+            color: black;
+        }
+        .user-company-register{
+            font-size: 3rem;
+            @include noDecoration();
+            color: black;
+            margin: 2rem;
+        }
+    }
+}
