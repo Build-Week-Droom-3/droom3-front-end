@@ -5,6 +5,8 @@ import { Form, Field, withFormik } from "formik"
 import { Link } from "react-router-dom"
 import * as Yup from "yup"
 
+import "./UserRegister.scss"
+
 function UserRegister({errors, status }){
     const [user, setUser] = useState([]);
 
@@ -13,20 +15,20 @@ function UserRegister({errors, status }){
     }, [status]);
 
     return(
-        <div>
-            <Link to="/">Home</Link>
-            <Form>
+        <div className="user-register-container">
+            Employee Register
+            <Form className="form-user-register-container">
                 {errors.username && <p>{errors.username}</p>}
-                <Field type="text" name="username" placeholder="Username..."/>
-                <Field type="text" name="password" placeholder="Password..."/>
-                <Field type="text" name="email" placeholder="Email..."/>
-                <label>
-                    Terms and Conditions
-                <Field type="checkbox" name="terms" />
+                <Field className="field-user-register" type="text" name="username" placeholder="Username..."/>
+                <Field className="field-user-register"type="text" name="password" placeholder="Password..."/>
+                <Field className="field-user-register"type="text" name="email" placeholder="Email..."/>
+                <label class="label-terms">
+                    <Field className="field-user-submit-terms" type="checkbox" name="terms" />
+                    <div className="terms">Terms and Conditions</div>
                 </label>
-                <button type="submit">Register</button>
+                <button className="user-register-btn" type="submit">Register</button>
             </Form>
-            <div>Already registered? <Link to="/login">Sign in.</Link></div>
+            <div>Already registered? <Link className="sign-in" to="/login">Sign in</Link></div>
 
             {user.map(ele => (
             <div>
@@ -36,6 +38,8 @@ function UserRegister({errors, status }){
 
             </div>
             ))}
+            <Link className="back" to="/">{`${"<<"} Back`}</Link>
+
         </div>
     )
 }

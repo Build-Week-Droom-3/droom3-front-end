@@ -3,7 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import api from '../../utils/api';
-
+import "./Login.scss"
 const Login = (props) => {
 	const [ data, setData ] = useState({
 		username: '',
@@ -26,9 +26,11 @@ const Login = (props) => {
 	};
 
 	return (
-		<div>
-			<Form onSubmit={handleSubmit}>
+		<div className="login-container">
+			Log in
+			<Form className="form-container" onSubmit={handleSubmit}>
 				<Field
+					className="username username-password"
 					type="text"
 					name="username"
 					placeholder="Username..."
@@ -36,6 +38,7 @@ const Login = (props) => {
 					onChange={handleChange}
 				/>
 				<Field
+					className="password username-password"
 					type="text"
 					name="password"
 					placeholder="Password..."
@@ -44,7 +47,7 @@ const Login = (props) => {
 				/>
 				<button type="submit">Login</button>
 			</Form>
-			<Link to="/">Home</Link>
+			<Link className="back" to="/">{`${"<<"} Back`}</Link>
 		</div>
 	);
 };

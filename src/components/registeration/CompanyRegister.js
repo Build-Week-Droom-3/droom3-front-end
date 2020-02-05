@@ -1,21 +1,45 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+
 import { Form, Field, withFormik } from "formik"
 import { Link } from "react-router-dom"
-function CompanyRegister(){
+import * as Yup from "yup"
+
+import "./CompanyRegister.scss"
+
+function CompanyRegister({errors, status }){
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        status && setUser(user => [...user, status]);
+    }, [status]);
+
     return(
-        <div> 
-           <Link to="/">Home</Link>
-            <Form>
-                <Field type="text" name="company" placeholder="Company..."/>
-                <Field type="text" name="password" placeholder="Password..."/>
-                <Field type="text" name="email" placeholder="Email..."/>
-                <label>
-                    Terms and Conditions
-                <Field type="checkbox" name="terms" />
+        <div className="company-register-container">
+            Company Register
+            <Form className="form-company-register-container">
+                {errors.username && <p>{errors.username}</p>}
+                <Field className="field-company-register" type="text" name="username" placeholder="Company"/>
+                <Field className="field-company-register"type="text" name="password" placeholder="Password"/>
+                <Field className="field-company-register"type="text" name="email" placeholder="Email"/>
+                <label class="label-terms">
+                    <Field className="field-company-submit-terms" type="checkbox" name="terms" />
+                    <div className="terms">Terms and Conditions</div>
                 </label>
-                <button type="submit">Register</button>
+                <button className="user-register-btn" type="submit">Register</button>
             </Form>
-            <div>Already registered? <Link to="/login">Sign in.</Link></div>
+            <div>Already registered? <Link className="sign-in" to="/login">Sign in</Link></div>
+
+            {user.map(ele => (
+            <div>
+                <div>{ele.username}</div>
+                <div>{ele.password}</div>
+                <div>{ele.email}</div>
+
+            </div>
+            ))}
+            <Link className="back" to="/">{`${"<<"} Back`}</Link>
+
         </div>
     )
 }
@@ -23,15 +47,34 @@ function CompanyRegister(){
 const FormikCompanyRegister = withFormik({
     mapPropsToValues() {
         return {
-            company: "",
+            username: "",
             password: "",
             email: "",
             terms: false
         }
     },
+    validationSchema: Yup.object().shape({
+        username: Yup.string()
+        .min(6)
+        .required("Please enter company"),
+        password: Yup.string()
+        .min(6)
+        .required("Please enter password"),
+        email: Yup.string()
+        .required("Please enter email")
+    }),
 
-    handleSubmit(values){
+    handleSubmit(values, {setStatus, resetForm}){
         console.log(values)
+
+        axios
+        .post("https://reqres.in/api/users", values)
+        .then(res => {
+            console.log("Success", res)
+            setStatus(res.data);
+            resetForm()
+        })
+        .catch(err => console.log(err))
     }
 })(CompanyRegister)
 
