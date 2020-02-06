@@ -1,24 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../utils/api';
+import React from "react"
+import { companydata } from "../fakedata/data"
+import { Link } from "react-router-dom"
+import "./Profile.scss"
+function CompanyProfile(){
+    return(
+        <div>
+            
+            {companydata.map(ele => 
+            <div className="profile-display">
+                <h2>Company Profile</h2>
+                Company:<div> {ele.company}</div>
+                Password: <div>{ele.password}</div>
+                Email: <div>{ele.email}</div>
+                Date Created: <div>{ele.date_created}</div>
+                Employees: <div>{ele.employees}</div>
+                Benefits: <div>{ele.benefits}</div>
+                Others: <div>{ele.others}</div>
+                <Link to="/">
+                    <button type="Submit">Back</button>
+                </Link>
+                <Link to="/profile_edit">
+                <button type="submit">Edit</button>
+            </Link>
+            </div>)}
+            
+        </div>
+    )
 
-function CompanyProfile() {
-	const [ jobs, setJobs ] = useState([]);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	};
-
-	useEffect(() => {
-		api()
-			.get('/jobs')
-			.then((res) => {
-				console.log('company', res);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	});
-	return <div>This is company profile!</div>;
 }
 
-export default CompanyProfile;
+
+
+export default CompanyProfile

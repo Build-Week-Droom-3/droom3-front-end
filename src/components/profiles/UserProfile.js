@@ -1,17 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../utils/api';
+import React from "react"
+import { userdata } from "../fakedata/data"
+import { Link } from "react-router-dom"
+import "./Profile.scss"
+function UserProfile(){
+    return(
+        <div>
+            
+            {userdata.map(ele => 
+            <div className="profile-display">
+                <h2>User Profile</h2>
+                Username:<div> {ele.name}</div>
+                Password: <div>{ele.password}</div>
+                Email: <div>{ele.email}</div>
+                Skills: <div>{ele.skills}</div>
+                Past Experiences: <div>{ele.past_experience}</div>
+                Occupation: <div>{ele.occupation}</div>
+                Interests: <div>{ele.interests}</div>
+                Others: <div>{ele.others}</div>
+                <Link to="/">
+                    <button type="Submit">Back</button>
+                </Link>
+                <Link to="/profile_edit">
+                <button type="submit">Edit</button>
+            </Link>
+            </div>)}
+            
+        </div>
+    )
 
-function UserProfile() {
-	const [ data, setData ] = useState([]);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-	};
-
-	useEffect(() => {
-		api().get();
-	});
-	return <div>This is user profile!</div>;
 }
 
-export default UserProfile;
+
+
+export default UserProfile

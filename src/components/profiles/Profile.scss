@@ -1,0 +1,30 @@
+.profile-display {
+    width: 30%;
+    margin: 0 auto;
+    div{
+        margin-left: 4rem;
+        border: 1px solid grey;
+        height: 2rem;
+        margin-top: 1rem;
+        border-radius: 0.2rem;
+        padding-top: 1rem;
+        padding-left: 1rem;
+    }
+    h2{
+        width: 70%;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+}
+button{
+    background-color: #5AB9EA;
+    width: 8rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.4rem;
+    color: rgb(248, 248, 248);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 2rem;
+}
