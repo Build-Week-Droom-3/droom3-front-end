@@ -1,21 +1,30 @@
 import React from "react"
-import { Form, Field, withFormik } from "formik"
+import { userdata } from "../fakedata/data"
 import { Link } from "react-router-dom"
-import { data } from "../fakedata/data"
+import "./Profile.scss"
 function UserProfile(){
     return(
         <div>
-            {data.map(ele => 
-            <div>
-                <div>{ele.name}</div>
-                <div>{ele.password}</div>
-                <div>{ele.email}</div>
-                <div>{ele.skills}</div>
-                <div>{ele.past_experience}</div>
-                <div>{ele.occupation}</div>
-                <div>{ele.interests}</div>
-
+            
+            {userdata.map(ele => 
+            <div className="profile-display">
+                <h2>User Profile</h2>
+                Username:<div> {ele.name}</div>
+                Password: <div>{ele.password}</div>
+                Email: <div>{ele.email}</div>
+                Skills: <div>{ele.skills}</div>
+                Past Experiences: <div>{ele.past_experience}</div>
+                Occupation: <div>{ele.occupation}</div>
+                Interests: <div>{ele.interests}</div>
+                Others: <div>{ele.others}</div>
+                <Link to="/">
+                    <button type="Submit">Back</button>
+                </Link>
+                <Link to="/profile_edit">
+                <button type="submit">Edit</button>
+            </Link>
             </div>)}
+            
         </div>
     )
 

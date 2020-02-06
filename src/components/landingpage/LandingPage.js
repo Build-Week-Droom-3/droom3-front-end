@@ -9,6 +9,8 @@ function LandingPage() {
 				<div className="login-register">
 					<Link to="/login">Login</Link>
 					<div>Register</div>
+					<div><Link to="/user_profile">User Profile</Link></div>
+					<div><Link to="/company_profile">Company Profile</Link></div>
 				</div>
 			</div>
 			<div className="user-company-register-container">

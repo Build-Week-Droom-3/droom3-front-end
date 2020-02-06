@@ -1,41 +1,35 @@
 import React from "react"
-import { Form, Field, withFormik } from "formik"
+import { companydata } from "../fakedata/data"
 import { Link } from "react-router-dom"
+import "./Profile.scss"
 function CompanyProfile(){
     return(
         <div>
-            <Form>
-                <Field type="text" name="company" placeholder="Username..."/>
-                <Field type="text" name="password" placeholder="Password..."/>
-                <Field type="text" name="email" placeholder="Email..."/>
-                <Field type="text" name="date_created" placeholder="Created in..."/>
-                <Field type="text" name="employees" placeholder="Employees..."/>
-                <Field type="text" name="benefits" placeholder="Benefits..."/>
-                <Field type="text" name="others" placeholder="Others..."/>
+            
+            {companydata.map(ele => 
+            <div className="profile-display">
+                <h2>Company Profile</h2>
+                Company:<div> {ele.company}</div>
+                Password: <div>{ele.password}</div>
+                Email: <div>{ele.email}</div>
+                Date Created: <div>{ele.date_created}</div>
+                Employees: <div>{ele.employees}</div>
+                Benefits: <div>{ele.benefits}</div>
+                Others: <div>{ele.others}</div>
+                <Link to="/">
+                    <button type="Submit">Back</button>
+                </Link>
+                <Link to="/profile_edit">
                 <button type="submit">Edit</button>
-            </Form>
-            <Link to="/">Home</Link>
+            </Link>
+            </div>)}
+            
         </div>
     )
+
+
 }
 
-const FormikCompanyProfile = withFormik({
-    mapPropsToValues() {
-        return {
-            company: "",
-            password: "",
-            email: "",
-            date_created: "",
-            employees: "",
-            benefits: "",
-            others: ""
-        }
-    },
 
 
-    handleSubmit(values){
-        console.log(values)
-    }
-})(CompanyProfile)
-
-export default FormikCompanyProfile
+export default CompanyProfile
