@@ -1,4 +1,4 @@
-import { FETCH_POSTS_START, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE } from '../actions';
+import { API_POSTS_START, API_POSTS_SUCCESS, API_POSTS_FAILURE } from '../actions';
 
 const initialState = {
 	name: '',

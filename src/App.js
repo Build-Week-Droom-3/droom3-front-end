@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route } from "react-router-dom"
-
+import { Switch, Link, Route } from 'react-router-dom';
 
 //===============Imports Components=================//
 import LandingPage from './components/landingpage/LandingPage';
@@ -14,59 +13,62 @@ import UserEdit from './components/editprofile/UserEdit';
 import CompanyEdit from './components/editprofile/CompanyEdit';
 import UserMatch from './components/matchingpage/UserMatch';
 import CompanyMatch from './components/matchingpage/CompanyMatch';
-import ProtectedRoute from './components/ProtectedRoute';
+import PrivateRoute from './components/ProtectedRoute';
+import { getToken } from './utils/api';
 
 //==================================================//
 
 function App() {
-  return (
-    <div className="App">
+	const loggedIn = getToken();
+	return (
+		<div className="App">
+			<Switch>
+				<Route exact path="/">
+					<LandingPage />
+				</Route>
+				{!loggedIn && (
+					<Route path="/login">
+						<Login />
+					</Route>
+				)}
+				{/* {loggedIn && <Link to="/logout">Log Out</Link>} */}
 
-      <Switch>
+				<Route path="/user_register">
+					<UserRegister />
+				</Route>
 
-        <Route exact path="/">
-          <LandingPage />
-        </Route>
+				<Route path="/company_register">
+					<CompanyRegister />
+				</Route>
 
-        <Route path="/login">
-          <Login />
-        </Route>
+				<Route path="/user_profile">
+					<UserProfile />
+				</Route>
 
-        <Route path="/user_register">
-          <UserRegister />
-        </Route>
+				<Route path="/company_profile">
+					<CompanyProfile />
+				</Route>
 
-        <Route path="/company_register">
-          <CompanyRegister />
-        </Route>
+				<Route path="/user_edit">
+					<UserEdit />
+				</Route>
 
-        <Route path="/user_profile">
-          <UserProfile />
-        </Route>
+				<Route path="/company_edit">
+					<CompanyEdit />
+				</Route>
 
-        <Route path="/company_profile">
-          <CompanyProfile />
-        </Route>
+				<Route path="/user_matched">
+					<UserMatch />
+				</Route>
 
-        <Route path="/user_edit">
-          <UserEdit />
-        </Route>
-
-        <Route path="/company_edit">
-          <CompanyEdit />
-        </Route>
-
-        <Route path="/user_matched">
-          <UserMatch />
-        </Route>
-
-        <Route path="/company_matched">
-          <CompanyMatch />
-        </Route>
-
-      </Switch>
-    </div>
-  );
+				<Route path="/company_matched">
+					<CompanyMatch />
+				</Route>
+			</Switch>
+			<PrivateRoute exact path="/login" component={Login} />
+			<PrivateRoute exact path="/logout" component={LogOut} />
+		</div>
+	);
 }
 
 export default App;

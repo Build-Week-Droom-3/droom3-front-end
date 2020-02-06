@@ -15,10 +15,23 @@ export const fetchAPI = () => (dispatch) => {
 		.get('/user')
 		.then((res) => {
 			console.log(res);
-			// dispatch({ type: API_SUCCESS, payload: res.data });
+			dispatch({ type: API_SUCCESS, payload: res.data });
 		})
 		.catch(() => {
 			console.log();
-			// dispatch({ type: API_FAILURE });
+			dispatch({ type: API_FAILURE });
+		});
+};
+
+export const postAPI = () => (dispatch) => {
+	dispatch({ type: API_POSTS_START });
+
+	api()
+		.put('/user/:id')
+		.then((res) => {
+			dispatch({ type: API_POSTS_SUCCESS, payload: res.data });
+		})
+		.catch(() => {
+			dispatch({ type: API_POSTS_FAILURE });
 		});
 };

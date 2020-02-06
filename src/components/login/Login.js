@@ -1,64 +1,54 @@
 import React, { useState } from 'react';
-import { Form, Field, withFormik } from 'formik';
+import { Form, Field, withFormik, validateYupSchema } from 'formik';
+import * as yup from 'yup';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import api from '../../utils/api';
-import "./Login.scss"
+import './Login.scss';
+
 const Login = (props) => {
 	const [ data, setData ] = useState({
 		username: '',
 		password: ''
 	});
-	const handleChange = (e) => {
-		setData({
-			...data,
-			[e.target.name]: e.target.value
-		});
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		api().post('/users/login', data).then((res) => {
-			localStorage.setItem('token', res.data.token);
-			console.log('sub', res);
-			props.history.push('/user_profile');
-		});
-	};
 
 	return (
 		<div className="login-container">
 			Log in
-			<Form className="form-container" onSubmit={handleSubmit}>
-				<Field
-					className="username username-password"
-					type="text"
-					name="username"
-					placeholder="Username..."
-					value={data.username}
-					onChange={handleChange}
-				/>
-				<Field
-					className="password username-password"
-					type="text"
-					name="password"
-					placeholder="Password..."
-					value={data.password}
-					onChange={handleChange}
-				/>
+			<Form className="form-container">
+				<Field className="username username-password" type="text" name="username" placeholder="Username..." />
+				<Field className="password username-password" type="text" name="password" placeholder="Password..." />
 				<button type="submit">Login</button>
 			</Form>
-			<Link className="back" to="/">{`${"<<"} Back`}</Link>
+			<Link className="back" to="/">{`${'<<'} Back`}</Link>
 		</div>
 	);
 };
 
-const FormikLogin = withFormik({
-	mapPropsToValues() {
+export default withFormik({
+	mapPropsToValues(values) {
 		return {
-			username: '',
-			password: ''
+			username: values.username || '',
+			password: values.password || ''
 		};
+	},
+	validationSchema: yup.object().shape({
+		username: yup.string().required(),
+		password: yup.string().required()
+	}),
+	validateOnChange: false,
+	validateOnBlur: false,
+	handleSubmit: (values, { props, resetForm }) => {
+		api()
+			.post('/users/login', values)
+			.then((res) => {
+				localStorage.setItem('token', res.data.payload);
+				resetForm();
+				console.log('sub', res);
+				props.history.push('/user_profile');
+			})
+			.catch((err) => {
+				return err.response;
+			});
 	}
 })(Login);
-
-export default connect()(FormikLogin);
