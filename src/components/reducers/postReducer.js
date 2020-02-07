@@ -8,6 +8,22 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
+		case API_POSTS_START:
+			return {
+				...state,
+				isLoading: true
+			};
+		case API_POSTS_SUCCESS:
+			return {
+				...state,
+				isLoading: false,
+				name: action.payload
+			};
+		case API_POSTS_FAILURE:
+			return {
+				...state,
+				isLoading: false
+			};
 		default:
 			return state;
 	}

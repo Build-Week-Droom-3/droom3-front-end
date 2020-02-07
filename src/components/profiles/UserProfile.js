@@ -39,17 +39,30 @@ function UserProfile(props) {
 
 	return (
 		<div>
-			{userdata.map((ele) => (
+			{userdata.map(() => (
 				<form onSubmit={handleSubmit} className="profile-display">
 					<h2>User Profile</h2>
-					Username:<div> {ele.name}</div>
-					Password: <div>{ele.password}</div>
-					Email: <div>{ele.email}</div>
-					Skills: <div>{ele.skills}</div>
-					Past Experiences: <div onClick={handleChange} />
-					Occupation: <div>{ele.occupation}</div>
-					Interests: <div>{ele.interests}</div>
-					Others: <div>{ele.others}</div>
+					Username:<input type="text" name="username" placeholder="username" onClick={handleChange} />
+					<br />
+					Password: <input type="text" name="password" placeholder="Password" onClick={handleChange} />
+					<br />
+					Email: <input type="text" name="email" placeholder="Email" onClick={handleChange} />
+					<br />
+					Skills: <input type="text" name="skills" placeholder="Skills" onClick={handleChange} />
+					<br />
+					Past Experiences:<input
+						type="text"
+						name="experiences"
+						placeholder="Past Experiences"
+						onClick={handleChange}
+					/>
+					<br />
+					Occupation: <input type="text" name="occupation" placeholder="Occupation" onClick={handleChange} />
+					<br />
+					Interests: <input type="text" name="interests" placeholder="Interests" onClick={handleChange} />
+					<br />
+					Others: <input type="text" name="others" placeholder="Others" onClick={handleChange} />
+					<br />
 					<Link to="/">
 						<button type="Submit">Back</button>
 					</Link>
@@ -62,6 +75,9 @@ function UserProfile(props) {
 
 function mapStateToProps(state) {
 	console.log('state', state);
+	return {
+		fetch: state.fetchAPI
+	};
 }
 
 const mapDispatchToProps = {
