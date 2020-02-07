@@ -27,7 +27,7 @@ function App() {
 					<LandingPage />
 				</Route>
 				{!loggedIn && (
-					<Route path="/login">
+					<Route exact path="/login">
 						<Login />
 					</Route>
 				)}

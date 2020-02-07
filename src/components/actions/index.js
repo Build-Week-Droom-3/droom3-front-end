@@ -23,11 +23,11 @@ export const fetchAPI = () => (dispatch) => {
 		});
 };
 
-export const postAPI = () => (dispatch) => {
+export const postAPI = (payload) => (dispatch) => {
 	dispatch({ type: API_POSTS_START });
 
 	api()
-		.put('/user/:id')
+		.post('/user/:id', payload)
 		.then((res) => {
 			dispatch({ type: API_POSTS_SUCCESS, payload: res.data });
 		})

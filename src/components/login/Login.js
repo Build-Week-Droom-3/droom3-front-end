@@ -45,7 +45,7 @@ export default withFormik({
 				localStorage.setItem('token', res.data.payload);
 				resetForm();
 				// console.log('sub', res);
-				props.history.push('/user_profile');
+				props.history.push('/user_matched');
 			})
 			.catch((err) => {
 				return err.response;

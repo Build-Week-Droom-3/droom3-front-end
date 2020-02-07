@@ -42,26 +42,57 @@ function UserProfile(props) {
 			{userdata.map(() => (
 				<form onSubmit={handleSubmit} className="profile-display">
 					<h2>User Profile</h2>
-					Username:<input type="text" name="username" placeholder="username" onClick={handleChange} />
+					Username:<input
+						type="text"
+						name="username"
+						placeholder="username"
+						value={props.name}
+						onClick={handleChange}
+					/>
 					<br />
-					Password: <input type="text" name="password" placeholder="Password" onClick={handleChange} />
+					Password:
+					<input
+						type="text"
+						name="password"
+						placeholder="Password"
+						value={props.name}
+						onClick={handleChange}
+					/>
 					<br />
-					Email: <input type="text" name="email" placeholder="Email" onClick={handleChange} />
+					Email:
+					<input type="text" name="email" placeholder="Email" value={props.name} onClick={handleChange} />
 					<br />
-					Skills: <input type="text" name="skills" placeholder="Skills" onClick={handleChange} />
+					Skills:
+					<input type="text" name="skills" placeholder="Skills" value={props.name} onClick={handleChange} />
 					<br />
 					Past Experiences:<input
 						type="text"
 						name="experiences"
 						placeholder="Past Experiences"
+						value={props.name}
 						onClick={handleChange}
 					/>
 					<br />
-					Occupation: <input type="text" name="occupation" placeholder="Occupation" onClick={handleChange} />
+					Occupation:
+					<input
+						type="text"
+						name="occupation"
+						placeholder="Occupation"
+						value={props.name}
+						onClick={handleChange}
+					/>
 					<br />
-					Interests: <input type="text" name="interests" placeholder="Interests" onClick={handleChange} />
+					Interests:
+					<input
+						type="text"
+						name="interests"
+						placeholder="Interests"
+						value={props.name}
+						onClick={handleChange}
+					/>
 					<br />
-					Others: <input type="text" name="others" placeholder="Others" onClick={handleChange} />
+					Others:
+					<input type="text" name="others" placeholder="Others" value={props.name} onClick={handleChange} />
 					<br />
 					<Link to="/">
 						<button type="Submit">Back</button>
@@ -76,7 +107,9 @@ function UserProfile(props) {
 function mapStateToProps(state) {
 	console.log('state', state);
 	return {
-		fetch: state.fetchAPI
+		fetch: state.fetch.fetch,
+		title: state.fetch.title,
+		isLoading: state.fetch.isLoading
 	};
 }
 
