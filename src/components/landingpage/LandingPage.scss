@@ -2,6 +2,10 @@
     text-decoration: none;
     
 }
+a{
+    @include noDecoration();
+    color: black;
+}
 .landing-page-container {
     width: 90%;
     margin: 0 auto;
@@ -11,10 +15,8 @@
     .login-register-container{
         .login-register{
             margin: 1rem;
-            @include noDecoration();
             color: black;
             div{
-                @include noDecoration();
                 color: black;
             }
         }

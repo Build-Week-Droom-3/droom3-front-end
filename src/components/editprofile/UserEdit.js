@@ -1,9 +1,11 @@
 import React from "react"
 import { Form, Field, withFormik } from "formik"
 import { Link } from "react-router-dom"
+import "./Edit.scss"
 function UserEdit(){
     return(
         <div>
+            <h2>User Edit</h2>
             <Form>
                 <Field type="text" name="username" placeholder="Username..."/>
                 <Field type="text" name="password" placeholder="Password..."/>
@@ -13,9 +15,10 @@ function UserEdit(){
                 <Field type="text" name="occupation" placeholder="Occupation..."/>
                 <Field type="text" name="interests" placeholder="Interests..."/>
                 <Field type="text" name="others" placeholder="Others..."/>
-                <button type="submit">Edit</button>
+                <button type="submit">Save</button>
+                <Link to="/user_profile"><button>Back</button></Link>
+
             </Form>
-            <Link to="/">Home</Link>
         </div>
     )
 }
