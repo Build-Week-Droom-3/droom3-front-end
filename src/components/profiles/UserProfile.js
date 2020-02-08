@@ -20,7 +20,7 @@ function UserProfile(){
                 <Link to="/">
                     <button type="Submit">Back</button>
                 </Link>
-                <Link to="/profile_edit">
+                <Link to="/user_edit">
                 <button type="submit">Edit</button>
             </Link>
             </div>)}

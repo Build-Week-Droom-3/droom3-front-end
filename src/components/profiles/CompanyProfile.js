@@ -19,7 +19,7 @@ function CompanyProfile(){
                 <Link to="/">
                     <button type="Submit">Back</button>
                 </Link>
-                <Link to="/profile_edit">
+                <Link to="/company_edit">
                 <button type="submit">Edit</button>
             </Link>
             </div>)}
